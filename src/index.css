@@ -5,3 +5,6 @@
     @apply text-[#A167A5];
     @apply scale-110;
 }
+body{
+    background-color: #DDFFF7;
+}

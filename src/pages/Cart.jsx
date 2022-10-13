@@ -4,8 +4,8 @@ function Cart() {
 
     return (
         <>
-            <div class="bg-gray-50 h-[85vh]">
-                <div class="max-w-2xl mx-auto pt-8 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div class="h-[85vh]">
+                <div class="max-w-2xl mx-auto pt-8 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8 h-[85vh]">
                     <h2 class="text-center font-bold text-3xl">Cart</h2>
                     <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
                         <div>
