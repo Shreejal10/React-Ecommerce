@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { BsGoogle } from 'react-icons/bs'
-{/* <img src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="/" className=' absolute w-full h-full object-cover' /> */ }
-const Signin = () => {
+import { Link } from 'react-router-dom'
+const Signup = () => {
     return (
         <>
             <div className='flex items-center justify-center w-full'>
@@ -23,7 +22,7 @@ const Signin = () => {
                             <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
                                 <form>
                                     <div className="flex flex-row items-center justify-center lg:justify-start">
-                                        <p className="text-lg mb-0 mr-4">Sign in with</p>
+                                        <p className="text-lg mb-0 mr-4">Sign up with</p>
                                         <button
                                             type="button"
                                             data-mdb-ripple="true"
@@ -64,14 +63,14 @@ const Signin = () => {
                                             type="button"
                                             className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                         >
-                                            Login
+                                            Sign up
                                         </button>
                                         <p className="text-sm font-semibold mt-2 pt-1 mb-0">
-                                            Don't have an account?
+                                            Already have an account?
                                             <Link
-                                                to="/signup"
+                                                to="/signin"
                                                 className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
-                                            > Register</Link>
+                                            > Login</Link>
                                         </p>
                                     </div>
                                 </form>
@@ -84,5 +83,4 @@ const Signin = () => {
     )
 }
 
-export default Signin
-
+export default Signup
