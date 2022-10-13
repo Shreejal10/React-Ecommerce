@@ -1,8 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BsGoogle } from 'react-icons/bs'
+import { auth } from '../firebase/config'
+import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth'
 {/* <img src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="/" className=' absolute w-full h-full object-cover' /> */ }
 const Signin = () => {
+    const navigate = useNavigate()
+    const googleSignin = () => {
+        const provider = new GoogleAuthProvider()
+        signInWithRedirect(auth, provider)
+        navigate('/')
+    }
+
     return (
         <>
             <div className='flex items-center justify-center w-full'>
@@ -24,7 +33,7 @@ const Signin = () => {
                                 <form>
                                     <div className="flex flex-row items-center justify-center lg:justify-start">
                                         <p className="text-lg mb-0 mr-4">Sign in with</p>
-                                        <button
+                                        <button onClick={googleSignin}
                                             type="button"
                                             data-mdb-ripple="true"
                                             data-mdb-ripple-color="light"
@@ -44,7 +53,7 @@ const Signin = () => {
                                         <input
                                             type="text"
                                             className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                            id="exampleFormControlInput2"
+                                            id="exampleFormControlInput1"
                                             placeholder="Email address"
                                         />
                                     </div>
