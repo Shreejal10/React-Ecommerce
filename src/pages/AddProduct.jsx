@@ -9,8 +9,9 @@ const AddProduct = () => {
     const [productPrice, setProductPrice] = useState(0);
     const [productImg, setProductImg] = useState(null);
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
-    const types = ['image/png', 'image/jpeg', 'image/jpg']
+    const types = ['image/png', 'image/jpeg', 'image/jpg', 'image/avif', 'image/webp']
 
     const addProduct = (e) => {
         e.preventDefault();
@@ -41,6 +42,9 @@ const AddProduct = () => {
                     setProductPrice(0);
                     setProductImg(null);
                     setError('');
+                    setTimeout(() => {
+                        setSuccess('Product added successfully')
+                    }, 200)
                     document.getElementById('file').value = '';
                 }).catch(err => setError(err.message))
             })
@@ -67,6 +71,9 @@ const AddProduct = () => {
                     </div>
                     <div >
                         {error && <div className='text-center py-2 px-3 mb-4 bg-red-400  text-gray-900'>{error}</div>}
+                    </div>
+                    <div>
+                        {success && <div className='text-center py-2 px-3 mb-4 bg-green-300  text-gray-900'>{success}</div>}
                     </div>
                     <div className="lg:w-1/2 md:w-2/3 mx-auto">
                         <form className="flex flex-wrap -m-2" autoComplete='off' onSubmit={addProduct}>
