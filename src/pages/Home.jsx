@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
-import { collection, doc, getDocs } from "firebase/firestore";
-import { db } from "../firebase/config"
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { db, auth } from "../firebase/config"
+import { v4 } from 'uuid'
 const Home = () => {
     const [products, setProducts] = useState([]);
 
@@ -25,9 +26,28 @@ const Home = () => {
         getProducts();
     }, [])
 
+    function GetUserUid() {
+        const [uid, setUid] = useState(null);
+        useEffect(() => {
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    setUid(user.uid);
+                }
+            })
+        }, [])
+        return uid;
+    }
+    const uid = GetUserUid();
+
     let Product;
     const addToCart = (product) => {
-        console.log(product);
+        console.log(product, uid);
+        Product = product;
+        Product['qty'] = 1;
+        Product['TotalProductPrice'] = Product.qty * Product.ProductPrice;
+        setDoc(doc(db, `${"cart " + uid}`, `${v4()}`), Product).then(() => {
+            console.log('Product added successfully')
+        }).catch(err => console.log(err.message))
 
     }
 
