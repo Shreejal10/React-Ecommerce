@@ -36,7 +36,8 @@ const AddProduct = () => {
                 setDoc(doc(db, "Products", `${v4()}`), {
                     ProductName: productName,
                     ProductPrice: Number(productPrice),
-                    ProductImg: url
+                    ProductImg: url,
+                    ID: unique_id
                 }).then(() => {
                     setProductName('');
                     setProductPrice(0);
