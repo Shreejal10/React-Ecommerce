@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/config"
-import { v4 } from 'uuid'
 const Home = () => {
     const [products, setProducts] = useState([]);
 
@@ -32,22 +31,32 @@ const Home = () => {
             auth.onAuthStateChanged(user => {
                 if (user) {
                     setUid(user.uid);
+                    setDoc(doc(db, "users", `${user.uid}`), {
+                        userID: (user.uid),
+                    }).then(() => {
+                        console.log("user data added");
+                    }).catch(err => setError(err.message))
                 }
             })
         }, [])
         return uid;
     }
     const uid = GetUserUid();
-
+    localStorage.setItem('uid', uid);
     let Product;
     const addToCart = (product) => {
-        console.log(product, uid);
-        Product = product;
-        Product['qty'] = 1;
-        Product['TotalProductPrice'] = Product.qty * Product.ProductPrice;
-        setDoc(doc(db, `${"cart " + uid}`, `${v4()}`), Product).then(() => {
-            console.log('Product added successfully')
-        }).catch(err => console.log(err.message))
+        if (uid !== null) {
+            console.log(product, uid);
+            Product = product;
+            Product['qty'] = 1;
+            Product['TotalProductPrice'] = Product.qty * Product.ProductPrice;
+            setDoc(doc(db, `${"cart-"}${uid}`, `${Product.ID}`), Product).then(() => {
+                console.log('Product added successfully')
+            }).catch(err => console.log(err.message))
+        }
+        else {
+            alert("Sign in to add to cart")
+        }
 
     }
 
