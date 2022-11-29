@@ -52,6 +52,7 @@ const Home = () => {
             Product['TotalProductPrice'] = Product.qty * Product.ProductPrice;
             setDoc(doc(db, `${"cart-"}${uid}`, `${Product.ID}`), Product).then(() => {
                 console.log('Product added successfully')
+                window.location.reload()
             }).catch(err => console.log(err.message))
         }
         else {
