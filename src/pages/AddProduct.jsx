@@ -15,7 +15,6 @@ const AddProduct = () => {
 
     const addProduct = (e) => {
         e.preventDefault();
-        // console.log(productName, productPrice, productImg);
         const storageRef = ref(storage, `product-images/${productImg.name}`);
         const uploadTask = uploadBytesResumable(storageRef, productImg)
         uploadTask.on('state_changed', (snapshot) => {

@@ -34,7 +34,6 @@ const Home = () => {
                     setDoc(doc(db, "users", `${user.uid}`), {
                         userID: (user.uid),
                     }).then(() => {
-                        console.log("user data added");
                     }).catch(err => setError(err.message))
                 }
             })
@@ -46,12 +45,10 @@ const Home = () => {
     let Product;
     const addToCart = (product) => {
         if (uid !== null) {
-            console.log(product, uid);
             Product = product;
             Product['qty'] = 1;
             Product['TotalProductPrice'] = Product.qty * Product.ProductPrice;
             setDoc(doc(db, `${"cart-"}${uid}`, `${Product.ID}`), Product).then(() => {
-                console.log('Product added successfully')
                 window.location.reload()
             }).catch(err => console.log(err.message))
         }

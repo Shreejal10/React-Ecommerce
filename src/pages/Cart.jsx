@@ -40,7 +40,6 @@ function Cart() {
     let taxes = (Price * 5) / 100
     let Total = Price + taxes + shipping
 
-    // console.log(deleteProduct);
     const checkout = async () => {
         alert("Your order has been confirmed")
         for (let i = 0; i < product.length; i++) {
