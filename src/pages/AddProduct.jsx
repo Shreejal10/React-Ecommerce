@@ -36,7 +36,7 @@ const AddProduct = () => {
                     ProductName: productName,
                     ProductPrice: Number(productPrice),
                     ProductImg: url,
-                    ID: unique_id
+                    ID: v4()
                 }).then(() => {
                     setProductName('');
                     setProductPrice(0);
